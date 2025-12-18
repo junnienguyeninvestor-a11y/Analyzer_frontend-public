@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vellindev0324.github.io/Analyzer_frontend/",
+  "homepage": "https://junnienguyeninvestor-a11y.github.io/Analyzer_frontend-public/",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
