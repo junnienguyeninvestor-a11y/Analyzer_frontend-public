@@ -28,7 +28,8 @@ function UserDashboard() {
   const [eventByAccount, setEventByAccount] = useState({});
   const [load, setLoad] = useState(false);
   const [updateState, setUpdateState] = useState(false);
-  const api = "https://statistic-dashboard-python-backend.onrender.com"
+  // const api = "https://statistic-dashboard-python-backend.onrender.com"
+  const api = "https://analyzer-backend-x6xj.onrender.com"
   const dev_api = "http://127.0.0.1:5000"
   // Fetch data from Flask API
   const fetchData = async () => {
@@ -50,6 +51,7 @@ function UserDashboard() {
     }
     setLoad(false);
   };
+  
 
   const handleSearch = async () => {
     const response = await fetch(`${api}/api/submit`, {
