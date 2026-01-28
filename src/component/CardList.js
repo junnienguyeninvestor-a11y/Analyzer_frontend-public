@@ -2,10 +2,20 @@ import React from "react";
 import "./CardList.css"; // custom CSS file
 import SimpleCountryClock from "./simplecountryclock";
 
-const CardList = ({ data, title, description }) => {
+const CardList = ({ data, title, description, onSubmit,loading }) => {
   if (!data || Object.keys(data).length === 0) {
     return <p>No data available</p>;
   }
+
+const handleNoReply = (name) => {
+  onSubmit(name, 'No reply')
+}
+
+const handleClick = (name) =>{
+  if(title==='Accept'){onSubmit(name, 'Chatting')}
+  else if(title==='Chatting'){onSubmit(name, 'Waiting')}
+  else if(title==='Waiting'){onSubmit(name, 'Run')}
+}
 
   return (
     <div className="cardlist-list">
@@ -24,7 +34,10 @@ const CardList = ({ data, title, description }) => {
                 const name = obj.name[index];
                 return (
                   <li key={index}>
-                    {name} <SimpleCountryClock countries={country} />
+                    {name} 
+                    <SimpleCountryClock countries={country} /> 
+                    <input type="button" value="done" onClick={()=>handleClick(name)} disabled={loading?true:false}/>
+                    <input type="button" value="No Reply" onClick={()=>{handleNoReply(name)}} disabled={loading?true:false}/>
                   </li>
                 );
               })}

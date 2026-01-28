@@ -34,7 +34,7 @@ function UserDashboard() {
   // Fetch data from Flask API
   const fetchData = async () => {
     try {
-      setLoad(true);
+      if(!load)setLoad(true);
       const response = await axios.get(`${api}/api/result_data`);
       setResultCountryCounts(response.data.run_country_counts);
       setResultAccountCounts(response.data.run_account_counts);
@@ -69,6 +69,7 @@ function UserDashboard() {
 
   // Example React code
   const updateStatus = async (keyword, new_value) => {
+    setLoad(true);
     const response = await fetch(`${api}/api/update`, {
       method: "POST",
       headers: {
@@ -79,6 +80,7 @@ function UserDashboard() {
         new_value: new_value,
       }),
     });
+    fetchData();
   }
 
   const newValueOptions = [
@@ -118,8 +120,11 @@ function UserDashboard() {
       <TargetByStatus
         chatting_names={chatting_names}
         waiting_names={waiting_names}
-        accept_names={accept_names} />
-      <EventData data={eventByAccount} />
+        accept_names={accept_names}
+        onSubmit={updateStatus} 
+        loading={load}
+      />
+      {/* <EventData data={eventByAccount} /> */}
     </div>
   );
 }
