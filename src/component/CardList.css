@@ -72,3 +72,10 @@
 .cardlist-content::-webkit-scrollbar-thumb:hover {
   background: #999;
 }
+
+.label-hover:hover{
+  color: #5a5f5a;
+}
+.label-hover:active{
+  color: #0f0f0f;
+}

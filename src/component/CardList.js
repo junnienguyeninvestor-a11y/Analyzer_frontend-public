@@ -1,6 +1,7 @@
 import React from "react";
 import "./CardList.css"; // custom CSS file
 import SimpleCountryClock from "./simplecountryclock";
+import { copyToClipboard } from "../utils/handleclipboard";
 
 const CardList = ({ data, title, description, onSubmit,loading }) => {
   if (!data || Object.keys(data).length === 0) {
@@ -34,7 +35,7 @@ const handleClick = (name) =>{
                 const name = obj.name[index];
                 return (
                   <li key={index}>
-                    {name} 
+                    <label onClick={()=>copyToClipboard(name)} className="label-hover">{name}</label> 
                     <SimpleCountryClock countries={country} /> 
                     <input type="button" value="done" onClick={()=>handleClick(name)} disabled={loading?true:false}/>
                     <input type="button" value="No Reply" onClick={()=>{handleNoReply(name)}} disabled={loading?true:false}/>
