@@ -37,7 +37,7 @@ function UserDashboard() {
     try {
       if(!load)setLoad(true);
       // const response = await axios.get(`${api}/api/result_data`);
-      const response = await axios.get(`${dev_api}/api/result_data`);
+      const response = await axios.get(`${api}/api/result_data`);
       setResultCountryCounts(response.data.run_country_counts);
       setResultAccountCounts(response.data.run_account_counts);
       setBalancedCountryCounts(sortbyObject(response.data.balanced_country_counts));
@@ -55,7 +55,7 @@ function UserDashboard() {
   };
   
 const fetchScenario = async() => {
-  const response = await axios.get(`${dev_api}/api/getscenario`);
+  const response = await axios.get(`${api}/api/getscenario`);
   setScenario(response)
 }
 
