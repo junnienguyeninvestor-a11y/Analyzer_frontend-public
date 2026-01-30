@@ -29,7 +29,7 @@ const handleClick = (name) =>{
       {Object.entries(data).map(([account, obj]) => (
         account && (
           <div className="cardlist" key={account}>
-            <h3 className="cardlist-title">{account}</h3>
+            <h3 className="cardlist-title">{account}{" | "}{obj.name.length}{" People"}</h3>
             <ul className="cardlist-content">
               {obj.country.map((country, index) => {
                 const name = obj.name[index];
