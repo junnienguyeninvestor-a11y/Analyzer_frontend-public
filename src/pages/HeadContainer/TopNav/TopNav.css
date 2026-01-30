@@ -59,3 +59,7 @@
 .topbar-btn:hover {
   background: #0b7dda;
 }
+
+.topbar-btn:active {
+  background: #035aa1;
+}

@@ -28,6 +28,7 @@ function UserDashboard() {
   const [eventByAccount, setEventByAccount] = useState({});
   const [load, setLoad] = useState(false);
   const [updateState, setUpdateState] = useState(false);
+  const [scenario, setScenario] = useState({});
   // const api = "https://statistic-dashboard-python-backend.onrender.com"
   const api = "https://analyzer-backend-x6xj.onrender.com"
   const dev_api = "http://127.0.0.1:5000"
@@ -35,7 +36,8 @@ function UserDashboard() {
   const fetchData = async () => {
     try {
       if(!load)setLoad(true);
-      const response = await axios.get(`${api}/api/result_data`);
+      // const response = await axios.get(`${api}/api/result_data`);
+      const response = await axios.get(`${dev_api}/api/result_data`);
       setResultCountryCounts(response.data.run_country_counts);
       setResultAccountCounts(response.data.run_account_counts);
       setBalancedCountryCounts(sortbyObject(response.data.balanced_country_counts));
@@ -52,6 +54,10 @@ function UserDashboard() {
     setLoad(false);
   };
   
+const fetchScenario = async() => {
+  const response = await axios.get(`${dev_api}/api/getscenario`);
+  setScenario(response)
+}
 
   const handleSearch = async () => {
     const response = await fetch(`${api}/api/submit`, {
@@ -98,7 +104,7 @@ function UserDashboard() {
 
   useEffect(() => {
     fetchData();
-
+    fetchScenario();
   }, []);
   return (
     <div>
@@ -107,6 +113,7 @@ function UserDashboard() {
         onButton1Click={handleSearch}
         onButton2Click={fetchData}
         load={load}
+        scenario={scenario.data}
       />
       {/* <div>
         <StatsDashboard data={receiveObj} contactedlist={contactedCountriesCounts} />
